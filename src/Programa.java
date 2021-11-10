@@ -1,9 +1,15 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Programa {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         int[][] matriz = new int[3][3];
 
@@ -20,12 +26,15 @@ public class Programa {
         matriz[2][2] = 7;
 
         if (isQuadradoMagico(matriz)) {
-            System.out.println("Matriz eh um quadrado magico.");
+            //  System.out.println("Matriz eh um quadrado magico.");
         } else {
             System.out.println("Matriz nao eh um quadrado magico.");
         }
 
-        isAnagrama();
+        // isAnagrama();
+
+        String path = "src/texto.txt";
+        leitor(path);
     }
 
     public static boolean isPalindromo() {
@@ -118,6 +127,29 @@ public class Programa {
             return false;
         }
 
+    }
+
+    // Metodo para ler um arquivo de texto.
+    public static void leitor(String path) throws IOException {
+        BufferedReader buffRead = new BufferedReader(new FileReader(path));
+        String linha = "";
+        while (true) {
+            if (linha != null) {
+                //   System.out.println(linha);
+
+            } else
+                break;
+            linha = buffRead.readLine();
+        }
+        buffRead.close();
+        List<String> linhas = Files.readAllLines(Paths.get("src/texto.txt"));
+        String teste = linhas.toString().replace("[", "")
+                .replace("]", "")
+                .replace("\"", "");
+        System.out.println(teste);
+        System.out.println("Quantidade de caracteres: " + teste.replace(" ", "")
+                .replace(".", "").replace(",", "")
+                .length());
     }
 
 }
