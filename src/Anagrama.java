@@ -6,13 +6,13 @@ public class Anagrama {
     public static boolean isAnagrama() {
 
         Scanner inputPrimeiraPalavra = new Scanner(System.in);
-        String palavra1 = inputPrimeiraPalavra.next();
+        String palavraUm = inputPrimeiraPalavra.next();
 
         Scanner inputSegundaPalavra = new Scanner(System.in);
-        String palavra2 = inputSegundaPalavra.next();
+        String palavraDois = inputSegundaPalavra.next();
 
-        char[] a = palavra1.toCharArray();
-        char[] b = palavra2.toCharArray();
+        char[] a = palavraUm.toCharArray();
+        char[] b = palavraDois.toCharArray();
 
         Arrays.sort(a);
         Arrays.sort(b);
