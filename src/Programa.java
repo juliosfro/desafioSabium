@@ -3,9 +3,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.text.DecimalFormat;
+import java.util.*;
 
 public class Programa {
 
@@ -35,6 +34,24 @@ public class Programa {
 
         String path = "src/texto.txt";
         leitor(path);
+
+        String temp = leitor(path).toLowerCase().replace(" ", "").replace(",", "").replace(".", "");
+        List<String> temp1 = new ArrayList<String>();
+        ArrayList<Integer> freq = new ArrayList<Integer>();
+
+        for (int i = 0; i <= temp.length() - 1; i++) {
+            temp1.add(Character.toString(temp.charAt(i)));
+        }
+
+        Set<String> uniqset = new HashSet<String>(temp1);
+        for (String s : uniqset) {
+            freq.add(Collections.frequency(temp1, s));
+            double frequencia = Collections.frequency(temp1, s);
+            double percentual =  frequencia * 100 / temp.length();
+            String x =  new DecimalFormat("#,##0.00").format(percentual) ;
+            System.out.println(s + " -->> " + Collections.frequency(temp1, s) + " vezes -->> " + x + "%.");
+        }
+
     }
 
     public static boolean isPalindromo() {
@@ -130,7 +147,7 @@ public class Programa {
     }
 
     // Metodo para ler um arquivo de texto.
-    public static void leitor(String path) throws IOException {
+    public static String leitor(String path) throws IOException {
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
         String linha = "";
         while (true) {
@@ -150,6 +167,9 @@ public class Programa {
         System.out.println("Quantidade de caracteres: " + teste.replace(" ", "")
                 .replace(".", "").replace(",", "")
                 .length());
+        return teste;
     }
 
+
 }
+
